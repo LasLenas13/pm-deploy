@@ -9,15 +9,15 @@ app.use(cors())
 // app.use(express.static(`${__dirname}/public`))
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/pmdeploy.html')
+    res.sendFile(__dirname + '/pmdeploy.html')
 })
 
 app.get('/css', (req, res) => {
-    res.sendFile(__dirname + '/public/page.css')
+    res.sendFile(__dirname + '/page.css')
 })
 
 app.get('/js', (req, res) => {
-    res.sendFile(__dirname + '/public/server.js')
+    res.sendFile(__dirname + '/server.js')
 })
 
 app.listen(4000, () => {
