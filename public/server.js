@@ -12,6 +12,14 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/pmdeploy.html')
 })
 
+app.get('/css', (req, res) => {
+    res.sendFile(__dirname + '/public/page.css')
+})
+
+app.get('/js', (req, res) => {
+    res.sendFile(__dirname + '/public/server.js')
+})
+
 app.listen(4000, () => {
     console.log('app is up on 4000')
 })
