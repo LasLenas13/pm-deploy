@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css">
+</head>
+<body>
+    <h1>This is Deployment!!!!!</h1>
+    <body>
+        <h1>Navy Ship List</h1>
+        <form id="shipForm">
+            <input type='text' id='shipName' placeholder='type ship name' />
+            <button>Ahoy!</button>
+        </form>
+        <ul id="shipList"></ul>
+
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+        <script>
+            async function fetchShips() {
+  try {
+    const response = await axios.get('http://localhost:4000/api/ships');
+    const ships = response.data;
+
+    const shipList = document.getElementById('shipList');
+    shipList.innerHTML = '';
+
+    ships.forEach((ship) => {
+      const listItem = document.createElement('li');
+      listItem.textContent = ship;
+      shipList.appendChild(listItem);
+    });
+  } catch (error) {
+    console.error('Error fetching ships:', error);
+  }
+}
+
+document.getElementById('shipForm').addEventListener('submit', async function(event) {
+  event.preventDefault(); // Prevent form submission and page refresh
+
+  const shipName = document.getElementById('shipName').value;
+  if (shipName) {
+    try {
+      await axios.post('http://localhost:4000/api/ships', { shipName });
+      document.getElementById('shipName').value = '';
+      fetchShips();
+    } catch (error) {
+      console.error('Error adding ship:', error);
+    }
+  }
+});
+
+fetchShips(); // Initial call to populate the list
+
+
+
+        </script>
+</body>
+<script src="/js"></script>
+</html>
